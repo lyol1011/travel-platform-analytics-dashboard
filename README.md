@@ -28,9 +28,44 @@ Target variable in the business context:
 
 ---
 
-## Repository Structure
+## Notebooks
 
-├─ notebooks/ # Jupyter analysis pipeline
-├─ src/ # helper functions used by notebooks
-└─ powerbi/ # PBIX + PDF export + assumptions
+1) **User data cleaning** — `I-filter_user_data.ipynb`  
+   - duplicates checks, date parsing, missingness overview  
+   - data quality rules (e.g., unrealistic ages removed)  
+   - exports: `data/user_filtered.parquet`
+
+2) **Clickstream cleaning** — `II-filter_clickstreams_data.ipynb`  
+   - duplicates removal, handling “-unknown-” values, missingness  
+   - session logic (e.g., new session if inactivity > 30 minutes)  
+   - exports: `data/clickstreams_filtered.parquet`
+
+3) **EDA for Marketing** — `III-user_EDA.ipynb`  
+   - booking trends over time, conversion patterns, correlations  
+   - insights oriented towards marketing decisions
+
+4) **Stakeholder Questions** — `IV-stakeholders-questions.ipynb`  
+   - statistical tests + visualizations (e.g., Chi² tests, effect sizes)  
+   - explores relationships between user attributes, behavior and destinations
+
+---
+
+## Power BI Dashboard
+
+Folder: `powerbi/`
+
+- `Business Dashboard.pbix` — editable Power BI project
+- `Business Dashboard.pdf` — exported dashboard (viewable on GitHub)
+- `Business Dashboard - Annahmen.pdf` — stakeholder choice, KPI definitions and assumptions
+
+Dashboard stakeholder: **Marketing department**  
+Dashboard goal: fast decision support to prioritize channels/devices and identify conversion & NDF issues.
+
+Key KPIs (example from dashboard export):
+- Users, Bookers, Booking Rate, NDF Rate, Avg Sessions/User
+- Conversion funnel and segment breakdowns (channel, device, destination, age, gender)
+- Top countries and trends over time
+
+
+
 
